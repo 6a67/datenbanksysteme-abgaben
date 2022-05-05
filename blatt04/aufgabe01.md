@@ -1,11 +1,19 @@
 # Aufgabe 1
 
-## 1
+<!-- ## 1
 a)  A ist ein Schlüsselkandidat
 b)  AB ist ein Superschlüssel
 c)  C ist weder Schlüsselkandidat noch Superschlüssel
 d)  E ist weder Schlüsselkandidat noch Superschlüssel
-e)  BDE ist Superschlüssel
+e)  BDE ist Superschlüssel -->
+
+## 1
+Es ergibt sich zunächst:
+1) ACDE
+2) AB
+3) ABC
+4) ABCE
+5) BDE
 
 ## 2
 Linksreduktion: \
