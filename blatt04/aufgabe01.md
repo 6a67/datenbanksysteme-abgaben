@@ -43,9 +43,9 @@ Hülle(F, E):
     AB keine Teilmenge von E
     C keine Teilmenge von E
     E Teilmenge von E -> ED
-    BDE keine Teilmenge von D
+    BDE keine Teilmenge von ED
 
-Keine sind überflüssig
+Da D Teil der Hülle von E ist, ist D überflüssig und kann entfernt werden
 
 
 **Zwischenergebnis**
@@ -53,7 +53,7 @@ Keine sind überflüssig
 2) A -> CDE
 3) C -> DE
 4) E -> D
-5) BDE -> AC
+5) BE -> AC
 
 
 Rechtsreduktion: \
@@ -63,7 +63,7 @@ Rechtsreduktion: \
         A Teilmenge von A -> ACDE
         C Teilmenge von ACDE -> ACDE
         E Teilmenge von ACDE -> ACDE
-        BDE keine Teilmenge von ACDE
+        BE keine Teilmenge von ACDE
     => B ist kein Element der neuen Attributhülle, somit muss B bleiben
 
 ## TODO: Muss man das nicht überprüfen, wenn rechts nur ein Element steht?
@@ -86,7 +86,7 @@ Teste D in AttrHülle(F - FD(2) + (A -> E), A):
         A Teilmenge von AB -> ABE
         C keine Teilmenge von ABE
         E Teilmenge von ABE -> ABDE
-        BDE Teilmenge von ABDE -> ABCDE
+        BE Teilmenge von ABDE -> ABCDE
 
     Somit ist D Element der AttrHülle(F', A) und somit überflüssig
 
@@ -96,7 +96,7 @@ Teste E in AttrHülle(F - FD(2) + (A -> empty), A):
         A Teilmenge von AB -> AB
         C keine Teilmenge von AB
         E keine Teilmenge von AB
-        BDE keine Teilmenge von AB
+        BE keine Teilmenge von AB
 
     Somit ist E kein Element der AttrHülle(F', A) und somit benötigt
 
@@ -111,7 +111,7 @@ Teste D in AttrHülle(F - FD(3) + (C -> E), C):
         A keine Teilmenge von C
         C Teilmenge von C -> CE
         E Teilmenge von CE -> CDE
-        BDE keine Teilmenge von CDE
+        BE keine Teilmenge von CDE
 
     Somit ist D Element der AttrHülle(F', C) und somit überflüssig
 
@@ -121,7 +121,7 @@ Teste E in AttrHülle(F - FD(3) + (C -> empty), C):
         A keine Teilmenge von C
         C Teilmenge von C -> C
         E keine Teilmenge von C
-        BDE keine Teilmenge von C
+        BE keine Teilmenge von C
 
     Somit ist E kein Element der AttrHülle(F', A) und somit benötigt
 
@@ -136,7 +136,7 @@ Teste D in AttrHülle(F - FD(4) + (E -> empty), E):
         A keine Teilmenge von E
         C keine Teilmenge von E
         E Teilmenge von E -> E
-        BDE keine Teilmenge von E
+        BE keine Teilmenge von E
     
     Somit ist D kein Element der AttrHülle(F', E) und somit benötigt
 
@@ -145,10 +145,40 @@ Teste D in AttrHülle(F - FD(4) + (E -> empty), E):
 
 Reduktion für FD(5):
 
-Teste BDE in AttrHülle(F - FD(3) + (C -> E), C):
-    AttrHülle(F', C):
-        A keine Teilmenge von C
-        A keine Teilmenge von C
-        C Teilmenge von C -> CE
-        E Teilmenge von CE -> CDE
-        BDE keine Teilmenge von CDE
+Teste A in AttrHülle(F - FD(5) + (CE -> E), C):
+    AttrHülle(F', BE):
+        A keine Teilmenge von BE
+        A keine Teilmenge von BE
+        C keine Teilmenge von BE
+        E Teilmenge von BE -> BDE
+        BE Teilmenge von BDE -> BDE
+
+    Somit ist D kein Element der AttrHülle(F', BE) und somit benötigt
+
+Teste C in AttrHülle(F - FD(5) + (CE -> A), C):
+    AttrHülle(F', BE):
+        A keine Teilmenge von BE
+        A keine Teilmenge von BE
+        C keine Teilmenge von BE
+        E Teilmenge von BE -> BDE
+        BE Teilmenge von BDE -> ABDE
+
+    
+    Somit ist C kein Element der AttrHülle(F', BE) und somit benötigt
+
+=> FD(5): CE -> A
+
+
+**Zwischenergebnis**
+1) A -> B
+2) A -> E
+3) C -> E
+4) E -> D
+5) BE -> AC
+
+Nach zusammen fassen ergibt sich
+**Endergebnis**
+1) A -> BE
+2) C -> E
+3) E -> D
+4) BE -> AC
