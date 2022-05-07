@@ -8,32 +8,53 @@ d)  E ist weder Schlüsselkandidat noch Superschlüssel
 e)  BDE ist Superschlüssel -->
 
 ## 1
-Es ergibt sich zunächst:
+Man kann damit starten, dasss ABCDE einen Superschlüssel stellt.
+Guckt man sich die Relationen an so ergibt sich zunächst:
 1) ACDE
 2) AB
 3) ABC
 4) ABCE
 5) BDE
 
+Als Superschlüssel. Diese sind allerdings noch nicht minimal.
+Überprüft man nun für jedes Attribut auf welche Werte man mit diesen schließen kann ergeben sich:
+1) A
+   
+Da A bereits einen Schlüsselkandidaten stellt, wird dieser aus den anderen Schlüsselkandidaten gestrichen:
+1) B    🗲
+2) BC
+   
+Da BC bereits einen Schlüsselkandidaten stellt, wird dieser aus den anderen Schlüsselkandidaten gestrichen:
+1) E    🗲
+2) BE
+
+Diese lassen sich nicht weiter kürzen und somit ergeben sich folgende Schlüsselkandidaten
+1) A
+2) BC
+3) BE
+
+
 ## 2
 Linksreduktion: \
+```
 Teste für AB 
 
-Hülle(F, A):
+Hülle(F, A): 
     A Teilmenge von A -> AB
     AB Teilmenge von AB -> ABCDE
 
 Daraus folgt, dass AB -> CDE zu A -> CDE reduziert werden kann
-
+```
+```
 Hülle(F, B):
     A keine Teilmenge von B
     AB keine Teilmenge von B
     C keine Teilmenge von B
     E keine Teilmenge von B
     BDE keine Teilmenge von B
+```
 
-
-
+```
 Teste für BDE
 
 Hülle(F, B):
@@ -54,7 +75,7 @@ Hülle(F, E):
     BDE keine Teilmenge von ED
 
 Da D Teil der Hülle von E ist, ist D überflüssig und kann entfernt werden
-
+```
 
 **Zwischenergebnis**
 1) A -> B
@@ -65,17 +86,20 @@ Da D Teil der Hülle von E ist, ist D überflüssig und kann entfernt werden
 
 
 Rechtsreduktion: \
+Beispiel: \
     $B \in AttrHülle(F - (A \rightarrow B) \cup (A \rightarrow (A-B)), A)$ \
     $H^{\prime}=AttrHülle(\{A \rightarrow CDE,\ C \rightarrow DE,\ E \rightarrow D,\ BDE \rightarrow AC\}, A)$ \
-    Hülle(F', A): \
-        A Teilmenge von A -> ACDE
-        C Teilmenge von ACDE -> ACDE
-        E Teilmenge von ACDE -> ACDE
-        BE keine Teilmenge von ACDE
-    => B ist kein Element der neuen Attributhülle, somit muss B bleiben
 
-## TODO: Muss man das nicht überprüfen, wenn rechts nur ein Element steht?
+```
+Hülle(F', A):
+    A Teilmenge von A -> ACDE
+    C Teilmenge von ACDE -> ACDE
+    E Teilmenge von ACDE -> ACDE
+    BE keine Teilmenge von ACDE
+=> B ist kein Element der neuen Attributhülle, somit muss B bleiben
+```
 
+```
 Reduktion für FD 2:
 Teste C in AttrHülle(F - FD(2) + (A -> DE), A):
     AttrHülle(F', A):
@@ -109,8 +133,8 @@ Teste E in AttrHülle(F - FD(2) + (A -> empty), A):
     Somit ist E kein Element der AttrHülle(F', A) und somit benötigt
 
 => FD(2): A -> E
-
-
+```
+```
 Reduktion für FD(3):
 
 Teste D in AttrHülle(F - FD(3) + (C -> E), C):
@@ -134,8 +158,8 @@ Teste E in AttrHülle(F - FD(3) + (C -> empty), C):
     Somit ist E kein Element der AttrHülle(F', A) und somit benötigt
 
 => FD(3): C -> E
-
-
+```
+```
 Reduktion für FD(4):
 
 Teste D in AttrHülle(F - FD(4) + (E -> empty), E):
@@ -149,11 +173,11 @@ Teste D in AttrHülle(F - FD(4) + (E -> empty), E):
     Somit ist D kein Element der AttrHülle(F', E) und somit benötigt
 
 => FD(4): C -> E
-
-
+```
+```
 Reduktion für FD(5):
 
-Teste A in AttrHülle(F - FD(5) + (CE -> E), C):
+Teste A in AttrHülle(F - FD(5) + (BE -> C), BE):
     AttrHülle(F', BE):
         A keine Teilmenge von BE
         A keine Teilmenge von BE
@@ -163,7 +187,7 @@ Teste A in AttrHülle(F - FD(5) + (CE -> E), C):
 
     Somit ist D kein Element der AttrHülle(F', BE) und somit benötigt
 
-Teste C in AttrHülle(F - FD(5) + (CE -> A), C):
+Teste C in AttrHülle(F - FD(5) + (BE -> A), BE):
     AttrHülle(F', BE):
         A keine Teilmenge von BE
         A keine Teilmenge von BE
@@ -174,8 +198,8 @@ Teste C in AttrHülle(F - FD(5) + (CE -> A), C):
     
     Somit ist C kein Element der AttrHülle(F', BE) und somit benötigt
 
-=> FD(5): CE -> A
-
+=> FD(5): BE -> AC
+```
 
 **Zwischenergebnis**
 1) A -> B
@@ -184,7 +208,7 @@ Teste C in AttrHülle(F - FD(5) + (CE -> A), C):
 4) E -> D
 5) BE -> AC
 
-Nach zusammen fassen ergibt sich
+Nach zusammen fassen ergibt sich \
 **Endergebnis**
 1) A -> BE
 2) C -> E
