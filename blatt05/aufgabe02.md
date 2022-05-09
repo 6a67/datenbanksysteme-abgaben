@@ -6,3 +6,16 @@ Bei äußeren Join hingehen bleiben diese erhalten. Kann also für ein Tupel aus
 # TODO: Bild einfügen
 
 ## 2
+## TODO
+```SQL
+select *
+from (
+  select *
+  from t1
+  union 
+  select *
+  from t2
+)
+left join t1 on t1.a=t2.a 
+left join t2 on t1.a=t2.a 
+```
