@@ -7,8 +7,6 @@ Es wird eine neue Spalte in Assistant eingefügt, welche als default-Wert 450 be
 
 
 ```SQL
-USE dbs2022;
-
 SELECT t1.Boss, t2.Boss
 FROM (
  	SELECT Boss,SUM(salary) as s
@@ -22,7 +20,7 @@ FROM (
  ) as t2
  WHERE t1.s=t2.s AND t1.Boss<>t2.Boss;
  ```
-Dabei werden zuerst die Kosten für jeden Prof ermittelt. Die Tabelle existiert dann zweimal und wird auf salary gejoined um die Profs zusammenzuführen, welche die gleichen Kosten für die Assistenten haben
+Dabei werden zuerst die Kosten für jeden Prof ermittelt. Dies wird dadurch realisiert, dass man die Tabelle der Assistenten nach Prof grouped und von denen dann das salary addiert. Diese Tabelle existiert dann zweimal und wird auf die Gesamtkosten des Profs gejoined um die Profs zusammenzuführen, welche die gleichen Kosten für die Assistenten haben. Es werden dabei die Zeilen raus gelassen, in denen die beiden Profs mit den gleichen Kosten auch jeweils die gleichen Profs sind.
 
 
 
