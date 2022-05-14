@@ -12,7 +12,6 @@ Beispiel mit Ergebnissen:
 [^1]: https://sqlhints.com/wp-content/uploads/2014/01/FULL-OUTER-JOIN.jpg
 
 ## 2
-## TODO
 ```SQL
 SELECT * FROM t1
 LEFT JOIN t2 ON t1.id = t2.id
