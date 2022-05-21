@@ -1,0 +1,5 @@
+# Aufgabe 2
+1)  Zwei Operationen stehen potentiell in einem Konflikt, wenn diese beide schreibend auf die gleiche Resource (Tabelle) zugreifen. (D. h., dass potentiell ein anderes Ergebnis entstehen kann, wenn die Reihenfolge dieser Operationen verändert wird)
+2)  Der DBS-Schedulers sollte den Ablauf der Transaktionen so gestalten, dass diese serialisierbar sind. Wird nun garantiert, dass keine Konflikte vorhanden sind, so kann auch garantiert werden, dass die Transaktionen serialisierbar sind. Ebenso ist dann auch ein Rollback ohne Kaskadierung möglich
+3)  Das Lemma bedeutet, dass zwei Historien äquivalent sind, wenn sie die Konfliktoperationen beide in der gleichen Reihenfolge ausführen. Dabei ist egal wie viele nicht-Konfliktoperationen dazwischen stattfinden.
+Die Umkehrung davon gilt nicht, da zwei Historien trotzdem zu dem gleichen Datenbankzustand führen können (also äquivalent sind), obwohl sie die Konfliktoperationen in einer anderen Reihenfolge durchführen. Dies könnte z. B. auftreten, wenn die Operationen irgendwie mathematischen Operationen durchführen, bei denen die Reihenfolge egal ist
