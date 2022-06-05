@@ -699,10 +699,22 @@ hue-6-2: #e6c07b
     <body class="vscode-body vscode-light">
         <h1 id="aufgabe-2">Aufgabe 2</h1>
 <h2 id="1">1</h2>
-<p>Im Grund gibt es dabei drei verschiedene Fälle.
-Erster Fall, die Variablen haben eine andere Reihenfolge z. B. p(A,B) und p(B,A), dann lassen diese so dem = Prädikat so umbenennen, dass diese den gleichen Kopf haben. (Bsp: p(B,A) :- X=A, A=B, B=X, ...)</p>
-<p>Im zweiten Fall könnte auftreten, dass eine Regel mehr Argumente annimmt als eine andere. Dabei lässt sich zu der Regel mit weniger Argumenten die zusätzlichen Argumente hinzufügen, welche danach dann einfach nicht weiter verwendet werden.</p>
-<p>Im dritten Fall könnte auftreten, dass eine Regel im Kopf doppelte Argumente hat und eine andere nicht (z. B. P(A,B,A) und P(A,B,C)). Dort kann man dann das doppelte Argument wie folgt umbenennen: P(A,B,A) wird zu: P(A,B,C) :- C=A, ...</p>
+<p>Enthält ein Prädikat mehrere Variablen, so lassen diese sich zuerst &quot;manuell&quot; umbenennen (z. B. wird p(X,Y,Z) zu p(A,B,C)).
+Dies tut man dann auch entsprechend für die Variablen, welche im Rumpf des Prädikats vorkommen (z. B. wird p(X,Y,Z) :- s(X,Y), t(Z) zu p(A,B,C) :- s(A,B), t(C)).
+Enthält dabei der Kopf doppelte Variablen, so müsste diese dann mit dem = im Rumpf umbenannt werden (p(X,Y,X) wird zu p(A,B,C) :- C=A)
+Enthält der Kopf weniger Variablen als erwünscht, so lassen sich einfach beliebig viele Variablen hinzufügen, welche nicht weiter genutzt werden(p(A,B) wird zu p(A,B,C,D))</p>
+<h2 id="2">2</h2>
+<p>p(’ASDF’, U, V) :- r(U,V, V).<br>
+p(U, V, U) :- r(V, U, V).</p>
+<p>p(A, B, C) :- r(B, C, C), A=’ASDF’.<br>
+p(A, B, C) :- r(B, A, B), C=A.</p>
+<h2 id="3">3</h2>
+<p>Beispiel Werte in dem Ausgangsbeispiel eingetragen:<br>
+p(’ASDF’, '1', '2') :- r('1','2', '2').<br>
+p('3', '4', '3') :- r('4', '3', '4').</p>
+<p>Beispiel Werte in das umgeformte Beispiel eingetragen:<br>
+p(’ASDF’, '1', '2') :- r('1', '2', '2'), A=’ASDF’.  # egal was für A eingesetzt werden würde, A ist am Ende immer ’ASDF’<br>
+p('3', '4', '3') :- r('4', '3', '4'), C=A.          # C und A haben immer den gleichen Wert</p>
 
         
         
