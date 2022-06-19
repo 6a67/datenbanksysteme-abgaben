@@ -7,11 +7,11 @@ Der Support gibt an, welchen Anteil der Tupel die die Precondition und die Concl
 ## 2
 1. $confidence = 4 / 4 = 1$  
     $support = 4 / 8 = 0.5$
-2. $confidence = 2 / 2 = 1$ 
+2. $confidence = 2 / 2 = 1$  
     $support = 2 / 8 = 0.25$
 3. $confidence = 1 / 1 = 1$  
     $support = 1 / 8$
-4. $confidence = 1 / 1 = 1$
+4. $confidence = 1 / 1 = 1$  
     $support = 1 / 8$
 
 ## 3
